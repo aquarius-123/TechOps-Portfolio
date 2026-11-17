@@ -111,7 +111,7 @@ export function Hero() {
 
             <div className="overflow-hidden">
               <img
-                src="/assets/events/coders-cup-2026-day-3.jpg"
+                src="/assets/events/coders-cup-2026-day-2-round1.jpg"
                 alt="Participants gathered around a workstation during Coders' Cup 2026, Day 3."
                 className="aspect-[4/5] w-full object-cover object-center transition-transform duration-700 hover:scale-105"
               />

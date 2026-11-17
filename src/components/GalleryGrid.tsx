@@ -27,11 +27,10 @@ export function GalleryGrid({ items, onOpen }: GalleryGridProps) {
               type="button"
               role="tab"
               aria-selected={active}
-              className={`border px-5 py-2.5 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 ${
-                active
+              className={`border px-5 py-2.5 text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-200 ${active
                   ? "border-gold bg-gold text-ink"
                   : "border-line bg-ink-2 text-muted hover:border-ivory/40 hover:text-ivory"
-              }`}
+                }`}
               onClick={() => setActiveTab(tab.id)}
             >
               {tab.label}
@@ -40,8 +39,8 @@ export function GalleryGrid({ items, onOpen }: GalleryGridProps) {
         })}
       </div>
 
-      {/* Masonry / Grid */}
-      <motion.div layout className="columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4">
+      {/* Clean 3-Column Aligned Grid */}
+      <motion.div layout className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
           {filteredItems.map((item) => (
             <motion.div
@@ -51,23 +50,21 @@ export function GalleryGrid({ items, onOpen }: GalleryGridProps) {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.35 }}
               key={item.id}
-              className="mb-5 break-inside-avoid"
             >
               <button
                 type="button"
-                className="group relative block w-full overflow-hidden border border-line bg-ink-2 text-left transition-all duration-300 hover:border-gold/60 hover:shadow-xl"
+                className="group flex h-full w-full flex-col overflow-hidden border border-line bg-ink-2 text-left transition-all duration-300 hover:border-gold/60 hover:shadow-xl"
                 onClick={() => onOpen(item.id)}
               >
-                <div className="relative overflow-hidden bg-black">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-black">
                   <img
                     src={item.src}
                     alt={item.alt}
                     loading="lazy"
                     width={item.width}
                     height={item.height}
-                    className={`w-full transition-transform duration-700 ease-out group-hover:scale-105 ${
-                      item.group === "promotional" ? "object-contain p-4" : "object-cover"
-                    }`}
+                    className={`h-full w-full transition-transform duration-700 ease-out group-hover:scale-105 ${item.group === "promotional" ? "object-contain p-6" : "object-cover object-top"
+                      }`}
                   />
                   <div className="absolute inset-0 bg-ink/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -77,7 +74,7 @@ export function GalleryGrid({ items, onOpen }: GalleryGridProps) {
                   </div>
                 </div>
 
-                <div className="border-t border-line/60 p-4">
+                <div className="mt-auto border-t border-line/60 p-4">
                   <span className="display block text-lg text-ivory transition-colors group-hover:text-gold">
                     {item.caption}
                   </span>
